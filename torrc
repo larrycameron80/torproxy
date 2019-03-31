@@ -1,0 +1,21 @@
+DataDirectory /var/lib/tor
+PidFile /var/run/tor/tor.pid
+User debian-tor
+
+ControlSocket /var/run/tor/control GroupWritable RelaxDirModeCheck
+ControlSocketsGroupWritable 1
+SocksPort 0.0.0.0:9050
+
+CookieAuthentication 1
+CookieAuthFileGroupReadable 1
+CookieAuthFile /var/run/tor/control.authcookie
+
+Log notice file /dev/stdout
+
+ExitPolicy reject *:*
+BridgeRelay 0
+PublishServerDescriptor 0
+
+UseBridges 1
+Bridge obfs3 104.244.78.13:24978 BD9DAEE45A2BDB70D462314A75ADE33A23357920
+Bridge ogfs3 82.69.50.50:9001 77E6E372FC707AD0E05CD50A8B08A6F039946EAF
