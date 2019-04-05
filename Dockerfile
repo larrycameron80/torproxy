@@ -11,13 +11,12 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get --yes install tor net-tools iftop 
+RUN DEBIAN_FRONTEND=noninteractive apt-get --yes install tor net-tools iftop pwgen
 COPY torrc /etc/
 COPY run_tor.sh /
 RUN /bin/mkdir -p /var/run/tor/
 RUN /bin/chown debian-tor /var/run/tor/
-RUN /usr/bin/tor -f /etc/tor/torrc --verify-config
 RUN chmod +x /run_tor.sh
 
-EXPOSE 9050
+EXPOSE 9050 9051
 ENTRYPOINT /run_tor.sh
